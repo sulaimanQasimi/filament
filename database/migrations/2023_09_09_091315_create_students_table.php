@@ -62,7 +62,7 @@ return new class extends Migration
             /**
              * Birth
              */
-            $table->date('dob')->nullable();
+            $table->string('dob')->nullable();
             $table->string('pob')->nullable();
             /**
              * contact

@@ -78,7 +78,7 @@ class Student extends Resource
                 Text::make(__('Father name'), 'father_name')->sortable()->required()->rules('required'),
                 Text::make(__('Grand Father Name'), 'grand_father_name')->sortable()->required()->rules('required'),
                 //  Text::make(__('Mother Name'),'mother_name')->sortable()->required()->rules('required'),
-                Date::make(__('Date of Birth'), 'dob')->sortable()->required()->rules('required'),
+                Text::make(__('Date of Birth'), 'dob')->sortable()->required()->rules('required'),
                 Text::make(__('Place of Birth'), 'pob')->sortable()->required()->rules('required'),
             ]),
             new Panel(__('Info In English'), [
