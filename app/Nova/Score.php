@@ -3,7 +3,10 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Score extends Resource
@@ -30,6 +33,14 @@ class Score extends Resource
     public static $search = [
         'id',
     ];
+    public static function singularLabel()
+    {
+        return __('Score');
+    }
+    public static function label()
+    {
+        return __('Scores');
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -41,6 +52,17 @@ class Score extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make(__('Student'),'student',Student::class),
+         Text::make(__('Semister'),'semister')->nullable(),
+         Text::make(__('Subject'),'subject')->nullable(),
+         Number::make(__('Credit'),'credit')->nullable(),
+           Number::make(__('Chance 1'),'chance_1')->nullable(),
+           Number::make(__('Chance 2'),'chance_2')->nullable(),
+           Number::make(__('Chance 3'),'chance_3')->nullable(),
+           Number::make(__('Chance 4'),'chance_4')->nullable(),
+           Number::make(__('Chance 5'),'chance_5')->nullable(),
+           Number::make(__('Total'),'total')->nullable(),
+         Text::make(__('Group'),'group')->nullable(),
         ];
     }
 

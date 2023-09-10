@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('break_year')->nullable();
             $table->integer('drop_year')->nullable();
             $table->integer('fail_year')->nullable();
+            $table->integer('graduate_year')->nullable();
             $table->string('degree')->nullable();
             /**
              * School

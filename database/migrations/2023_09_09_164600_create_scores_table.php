@@ -16,7 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Student::class)->nullable();
             $table->string('subject');
-            $table->string('credit')->nullable();
+            $table->integer('credit')->nullable();
+            $table->string('semister')->nullable();
             $table->integer('chance_1')->nullable();
             $table->integer('chance_2')->nullable();
             $table->integer('chance_3')->nullable();

@@ -22,8 +22,16 @@ class Comment extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'student.name';
 
+    public static function singularLabel()
+    {
+        return __('Comment');
+    }
+    public static function label()
+    {
+        return __('Comments');
+    }
     /**
      * The columns that should be searched.
      *

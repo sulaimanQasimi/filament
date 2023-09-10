@@ -12,6 +12,9 @@ class Student extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $casts=[
+        'dob'=>'date'
+    ];
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
