@@ -1,0 +1,38 @@
+{
+    "Login":"ورود",
+"Related Article":"مقالات مرتبط",
+    "Diary": "مجله",
+    "Diaries": " مجله ها",
+    "Department": "دیپارتمنت",
+    "Departments": "دیپارتمنت ها",
+    "User": "کاربر",
+    "Users": "کاربران",
+    "Name": "نام",
+    "ISSN":"شماره",
+    "Editor In Chief": "ویرایشگر",
+    "Publisher": "ناشر",
+    "Article": "مقاله",
+    "Articles": "مقالات",
+    "Title": "عنوان",
+    "Content in": "موضوع به :lan",
+    "Keyword": "کلید واژه",
+    "Publish Date": "تاریخ نشر",
+    "Abstract": "چکیده",
+    "Article Author": "نویسنده مقاله",
+    "Article Authors": "نویسنده گان مقاله",
+    "Author": "نویسنده",
+    "Authors": "نویسنده گان",
+    "Reference":"ماخذ",
+    
+    "Show":"نمایش",
+    
+    "Agriculture Journal":"مجله زراعت",
+
+    "Welcome to Agriculture Journal":" به مجله زراعت خوش آمدید",
+    "Language":"زبان",
+    "Dari":"زبان دری",
+    "English":"زبان انگلیسی",
+    "Pashto":"زبان پشتو",
+    "Home":"خانه",
+    "Gallary":"گالری"
+}

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Score extends Model
 {
     use HasFactory;
-    
+
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);
