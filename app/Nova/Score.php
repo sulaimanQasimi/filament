@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\SemesterFilter;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -85,7 +86,7 @@ class Score extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [new SemesterFilter];
     }
 
     /**

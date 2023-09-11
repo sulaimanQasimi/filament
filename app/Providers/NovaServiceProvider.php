@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
+use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Menu\Menu;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
+
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -17,6 +23,20 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
         Nova::enableRTL();
+         Nova::userMenu(function (Request $request, Menu $menu) {
+            return $menu
+
+                ->append(MenuItem::externalLink(__('Import Student'), route('import.create'))
+                    ->openInNewTab()
+                    ->canSee(function () {
+                        return auth();
+                    }));
+             
+        });
+      Nova::footer(function ($request) {
+return "This System Developed by Sulaiman Qasimi";        
+      });
+      Nova::withoutThemeSwitcher();
     }
 
     /**

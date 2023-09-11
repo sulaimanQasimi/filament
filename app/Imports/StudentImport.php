@@ -4,17 +4,20 @@ namespace App\Imports;
 
 use App\Models\Student;
 use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-
-class StudentImport implements ToModel, WithHeadingRow,WithChunkReading
+use Illuminate\Support\Collection;
+class StudentImport implements ToCollection, WithHeadingRow, WithChunkReading
 {
-
-    public function model(array $row)
+public function __construct(public $department) {
+    
+}
+    public function collection(Collection $rows)
     {
-     $student=   new Student([
-            'department_id'=>1,
+		foreach($rows as $row){
+        $student = Student::create([
+            'department_id' => $this->department,
             'id_card' => $row['id_card'],
             'name' => $row['name'],
             'last_name' => $row['last_name'],
@@ -43,23 +46,32 @@ class StudentImport implements ToModel, WithHeadingRow,WithChunkReading
             'research_defendent_year' => $row['research_defendent_year'],
 
         ]);
-
-        for($i=1;$i<=8;$i++){
-            for($j=1;$j<=10;$j){
-
-
+    
+      for ($i = 1; $i <= 8; $i++) {
+            for ($j = 1; $j <= 10; $j++) {;
+                $student->scores()->create([
+                    'subject' => $row['semester_' . $i . '_subject_' . $j . '_name'],
+                    'semister' => $i,
+                    'chance_1' => $row['semester_' . $i . '_subject_' . $j . '_chance_1'],
+                    'chance_2' => $row['semester_' . $i . '_subject_' . $j . '_chance_2'],
+                    'chance_3' => $row['semester_' . $i . '_subject_' . $j . '_chance_3'],
+                    'chance_4' => $row['semester_' . $i . '_subject_' . $j . '_chance_4'],
+                    'chance_5' => $row['semester_' . $i . '_subject_' . $j . '_chance_5'],
+                    'total' => $row['semester_' . $i . '_subject_' . $j . '_total'],
+                    'group' => $row['semester_' . $i . '_subject_' . $j . '_grade'],
+                ]);
             }
         }
-        dd($row);
-        die;
-        return $student;
+        // dd($row);
+        // die;
+		}
     }
     public function headingRow(): int
     {
         return 3;
     }
-    public function chunkSize() : int {
-        return 10;
-
+    public function chunkSize(): int
+    {
+        return 100;
     }
 }
