@@ -72,6 +72,6 @@ public function __construct(public $department) {
     }
     public function chunkSize(): int
     {
-        return 100;
+        return 1;
     }
 }
