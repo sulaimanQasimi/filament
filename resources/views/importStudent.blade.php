@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>E-Library | Import</title>
+    <title>@lang('Import Student')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
@@ -55,7 +55,7 @@
                     @enderror
 
                 </div>
-                
+
                 <label class="form-label">@lang('File')</label>
                 <input type="file" name="csv_file">
 
@@ -66,8 +66,6 @@
                 <button type="submit" class="btn btn-primary">@lang('Save')</button>
 
             </form>
-
-
         </div>
     </div>
 </div>

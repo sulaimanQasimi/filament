@@ -37,11 +37,11 @@
             "Tests\\": "tests/"
         }
     },
-	
+
     "repositories": [
         {
             "type": "path",
-            "url": "vendor/nova"
+            "url": "nova"
         }
     ],
     "scripts": {
