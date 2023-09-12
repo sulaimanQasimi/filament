@@ -29,7 +29,7 @@ class ScorePolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -37,7 +37,7 @@ class ScorePolicy
      */
     public function update(User $user, Score $score): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -45,7 +45,7 @@ class ScorePolicy
      */
     public function delete(User $user, Score $score): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -53,7 +53,7 @@ class ScorePolicy
      */
     public function restore(User $user, Score $score): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -61,6 +61,6 @@ class ScorePolicy
      */
     public function forceDelete(User $user, Score $score): bool
     {
-        return true;
+        return false;
     }
 }

@@ -72,60 +72,77 @@ class Student extends Resource
         return [
             ID::make()->sortable(),
             new Panel(__('Info'), [
-                Text::make(__('ID Card'), 'id_card')->sortable()->required()->rules('required'),
-                Text::make(__('Name'), 'name')->sortable()->required()->rules('required'),
-                Text::make(__('Last Name'), 'last_name')->sortable()->required()->rules('required'),
-                Text::make(__('Father name'), 'father_name')->sortable()->required()->rules('required'),
-                Text::make(__('Grand Father Name'), 'grand_father_name')->sortable()->required()->rules('required'),
+                Text::make(__('ID Card'), 'id_card')->displayUsing(fn($value)=>$this->not_found_value($value))->sortable()->required()->rules('required'),
+                Text::make(__('Name'), 'name')->displayUsing(fn($value)=>$this->not_found_value($value))->sortable()->required()->rules('required'),
+                Text::make(__('Last Name'), 'last_name')->displayUsing(fn($value)=>$this->not_found_value($value))->sortable()->required()->rules('required'),
+                Text::make(__('Father name'), 'father_name')->displayUsing(fn($value)=>$this->not_found_value($value))->sortable()->required()->rules('required'),
+                Text::make(__('Grand Father Name'), 'grand_father_name')->displayUsing(fn($value)=>$this->not_found_value($value))->sortable()->required()->rules('required'),
                 //  Text::make(__('Mother Name'),'mother_name')->sortable()->required()->rules('required'),
-                Text::make(__('Date of Birth'), 'dob')->sortable()->required()->rules('required'),
-                Text::make(__('Place of Birth'), 'pob')->sortable()->required()->rules('required'),
+                Text::make(__('Date of Birth'), 'dob')->displayUsing(fn($value)=>$this->not_found_value($value))->sortable()->required()->rules('required'),
+                Text::make(__('Place of Birth'), 'pob')->displayUsing(fn($value)=>$this->not_found_value($value))->sortable()->required()->rules('required'),
             ]),
             new Panel(__('Info In English'), [
-                Text::make(__('Name in English'), 'name_en')->textAlign('left'),
-                Text::make(__('Last Name in English'), 'last_name_en')->textAlign('left'),
-                Text::make(__('Father Name in English'), 'father_name_en')->textAlign('left'),
-                Text::make(__('Grand Father Name in English'), 'grand_father_name_en')->textAlign('left'),
+                Text::make(__('Name in English'), 'name_en')->displayUsing(fn($value)=>$this->not_found_value($value))->textAlign('left'),
+                Text::make(__('Last Name in English'), 'last_name_en')->displayUsing(fn($value)=>$this->not_found_value($value))->textAlign('left'),
+                Text::make(__('Father Name in English'), 'father_name_en')->displayUsing(fn($value)=>$this->not_found_value($value))->textAlign('left'),
+                Text::make(__('Grand Father Name in English'), 'grand_father_name_en')->displayUsing(fn($value)=>$this->not_found_value($value))->textAlign('left'),
             ]),
 
             new Panel(__('University'), [
                 BelongsTo::make(__('Department'), 'department', Department::class)->showCreateRelationButton()->filterable(),
-                Number::make(__('Konkor Year'), 'konkor_year')->nullable(),
-                Number::make(__('Enter Year'), 'enter_year')->nullable(),
-                Number::make(__('Break Year'), 'break_year')->nullable(),
-                Number::make(__('Drop Year'), 'drop_year')->nullable(),
-                Number::make(__('Fail Year'), 'fail_year')->nullable(),
-                Number::make(__('Graduate Year'), 'graduate_year')->nullable(),
-                Select::make(__('Degree'),'degree')->options([
+                Number::make(__('Konkor Year'), 'konkor_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Number::make(__('Enter Year'), 'enter_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Number::make(__('Break Year'), 'break_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Number::make(__('Drop Year'), 'drop_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Number::make(__('Fail Year'), 'fail_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Number::make(__('Graduate Year'), 'graduate_year')->filterable()->sortable()->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Select::make(__('Degree'), 'degree')->displayUsing(fn($value)=>$this->not_found_value($value))->options([
                     'bachlor' => __('Bachlor'),
                     'master' => __('Master'),
                     'doctoral' => __('Doctoral')
-                ]),
+                ])->filterable()->sortable(),
             ]),
 
             new Panel(__('School/Konkor'), [
 
-                Text::make(__('Konkor ID'),'konkor_id')->nullable(),
-                Text::make(__('Konkor Score'),'konkor_score')->nullable(),
-                Text::make(__('School Name'),'school_name')->nullable(),
-                Number::make(__('School Graduation Year'),'school_graduation_year')->nullable(),
+                Text::make(__('Konkor ID'), 'konkor_id')->displayUsing(fn($value)=>$this->not_found_value($value))->textAlign('left')->nullable(),
+                Text::make(__('Konkor Score'), 'konkor_score')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Text::make(__('School Name'), 'school_name')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Number::make(__('School Graduation Year'), 'school_graduation_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
             ]),
             new Panel(__('Research'), [
-                Text::make(__('Research Title'),'research_title')->nullable(),
-                Text::make(__('Research Teacher'),'research_teacher')->nullable(),
-                Number::make(__('Research Defendent Year'),'research_defendent_year')->nullable(),
+                Text::make(__('Research Title'), 'research_title')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Text::make(__('Research Teacher'), 'research_teacher')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                Number::make(__('Research Defendent Year'), 'research_defendent_year')->filterable()->sortable()->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
             ]),
             new Panel(
-                'Contact',
+                __('Contact'),
+                [
+                    Text::make(__('Phone'), 'phone')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                    Text::make(__('Address'), 'address')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
+                ]
+            ), new Panel(__('Result'),
                 [
 
-                    Text::make(__('Phone'), 'phone')->nullable(),
+                    Text::make(__('semester 1'), 'subject_total1')->onlyOnDetail(),
+                    Text::make(__('semester 2'), 'subject_total2')->onlyOnDetail(),
+                    Text::make(__('semester 3'), 'subject_total3')->onlyOnDetail(),
+                    Text::make(__('semester 4'), 'subject_total4')->onlyOnDetail(),
+                    Text::make(__('semester 5'), 'subject_total5')->onlyOnDetail(),
+                    Text::make(__('semester 6'), 'subject_total6')->onlyOnDetail(),
+                    Text::make(__('semester 7'), 'subject_total7')->onlyOnDetail(),
+                    Text::make(__('semester 8'), 'subject_total8')->onlyOnDetail(),
+                    Text::make(__('Final Result'), 'final_result')->onlyOnDetail(),
                     Text::make(__('Address'), 'address')->nullable(),
                 ]
             ),
             HasMany::make(__('Scores'), 'scores', Score::class),
             HasMany::make(__('Comment'), 'comments', Comment::class),
         ];
+    }
+    private function not_found_value($value) :String {
+        return (is_null($value))?__('Not'):$value;
+
     }
 
     /**

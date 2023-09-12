@@ -53,17 +53,17 @@ class Score extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make(__('Student'),'student',Student::class),
-         Text::make(__('Semister'),'semister')->nullable(),
-         Text::make(__('Subject'),'subject')->nullable(),
-         Number::make(__('Credit'),'credit')->nullable(),
-           Number::make(__('Chance 1'),'chance_1')->nullable(),
-           Number::make(__('Chance 2'),'chance_2')->nullable(),
-           Number::make(__('Chance 3'),'chance_3')->nullable(),
-           Number::make(__('Chance 4'),'chance_4')->nullable(),
-           Number::make(__('Chance 5'),'chance_5')->nullable(),
-           Number::make(__('Total'),'total')->nullable(),
-         Text::make(__('Group'),'group')->nullable(),
+            BelongsTo::make(__('Student'), 'student', Student::class),
+            Text::make(__('Semister'), 'semister')->nullable(),
+            Text::make(__('Subject'), 'subject')->nullable(),
+            Number::make(__('Credit'), 'credit')->nullable(),
+            Number::make(__('Chance 1'), 'chance_1')->displayUsing(fn ($value) => $this->check_score($value))->asHtml()->nullable(),
+            Number::make(__('Chance 2'), 'chance_2')->displayUsing(fn ($value) => $this->check_score($value))->asHtml()->nullable(),
+            Number::make(__('Chance 3'), 'chance_3')->displayUsing(fn ($value) => $this->check_score($value))->asHtml()->nullable(),
+            Number::make(__('Chance 4'), 'chance_4')->displayUsing(fn ($value) => $this->check_score($value))->asHtml()->nullable(),
+            Number::make(__('Chance 5'), 'chance_5')->displayUsing(fn ($value) => $this->check_score($value))->asHtml()->nullable(),
+            Number::make(__('Total'), 'total')->nullable(),
+            Text::make(__('Group'), 'group')->nullable(),
         ];
     }
 
@@ -98,6 +98,21 @@ class Score extends Resource
     public function lenses(NovaRequest $request)
     {
         return [];
+    }
+    private function check_score($value)
+    {
+        $color = 'black';
+
+        //
+
+        if ($value < 55) {
+            $color = 'red';
+        } elseif ($value == 55) {
+            $color = 'yellow';
+        } elseif ($value > 55) {
+            $color = 'green';
+        }
+        return "<i style=\"color:{$color}\">{$value}</i>";
     }
 
     /**
