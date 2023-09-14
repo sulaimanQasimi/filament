@@ -88,7 +88,7 @@ class Student extends Resource
                 Text::make(__('Grand Father Name in English'), 'grand_father_name_en')->displayUsing(fn($value)=>$this->not_found_value($value))->textAlign('left'),
             ]),
 
-            new Panel(__('University'), [
+                new Panel(__('University'), [
                 BelongsTo::make(__('Department'), 'department', Department::class)->showCreateRelationButton()->filterable(),
                 Number::make(__('Konkor Year'), 'konkor_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
                 Number::make(__('Enter Year'), 'enter_year')->displayUsing(fn($value)=>$this->not_found_value($value))->nullable(),
@@ -135,7 +135,13 @@ class Student extends Resource
                     Text::make(__('Final Result'), 'final_result')->onlyOnDetail(),
                     Text::make(__('Address'), 'address')->nullable(),
                 ]
-            ),
+            ),Text::make(__('Print'))->displayUsing(
+function () {
+return "<a target='__blank' class='text-blue-500' href='". route('print.student',$this->id)."'>Print</a>";
+}
+
+            )->asHtml()->onlyOnDetail()->readonly(),
+
             HasMany::make(__('Scores'), 'scores', Score::class),
             HasMany::make(__('Comment'), 'comments', Comment::class),
         ];
