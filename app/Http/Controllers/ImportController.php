@@ -22,7 +22,6 @@ class ImportController extends Controller
         }
         if ($request->hasFile('csv_file')) {
             $file = $request->file('csv_file')->store('public');
-
             Excel::import(new StudentImport(department:$request->department), $request->file('csv_file'));
         }
         return redirect()->back();

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use COM;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -22,7 +22,25 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+protected static function boot(){
+parent::boot();
+static::created(function($user){
 
+   $obBaseApp = new COM("hMailServer.Application", NULL, CP_UTF8);
+$obBaseApp->Authenticate("Administrator","S11solai");
+$DomainASQ=$obBaseApp->Domains->ItemByName("sq.af");
+$acAd=$DomainASQ->Accounts->Add();
+
+$acAd->Address=$user->email;
+$acAd->Password="123";
+$acAd->Active=true;
+$acAd->MaxSize=1024;
+$acAd->Save();
+
+});
+
+
+}
     /**
      * The attributes that should be hidden for serialization.
      *

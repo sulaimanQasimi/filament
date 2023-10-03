@@ -2,6 +2,9 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\PDFStudentInfo;
+use App\Nova\Actions\SendMailStudentInfo;
+use App\Nova\Metrics\StudentYearPartition;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -159,7 +162,10 @@ return "<a target='__blank' class='text-blue-500' href='". route('print.student'
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            new StudentYearPartition,
+            
+        ];
     }
 
     /**
@@ -192,6 +198,7 @@ return "<a target='__blank' class='text-blue-500' href='". route('print.student'
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [new PDFStudentInfo,
+    new SendMailStudentInfo];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Mail\StudentInfoMail;
 use App\Models\Student;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -11,7 +12,7 @@ use Illuminate\Support\Collection;
 class StudentImport implements ToCollection, WithHeadingRow, WithChunkReading
 {
 public function __construct(public $department) {
-    
+
 }
     public function collection(Collection $rows)
     {
@@ -46,7 +47,7 @@ public function __construct(public $department) {
             'research_defendent_year' => $row['research_defendent_year'],
 
         ]);
-    
+
       for ($i = 1; $i <= 8; $i++) {
             for ($j = 1; $j <= 10; $j++) {;
                 $student->scores()->create([
@@ -62,8 +63,8 @@ public function __construct(public $department) {
                 ]);
             }
         }
-        // dd($row);
-        // die;
+        \Illuminate\Support\Facades\Mail::to(config('app.admin_email'))
+        ->queue(new StudentInfoMail(Student::query()->first()));
 		}
     }
     public function headingRow(): int

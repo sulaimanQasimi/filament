@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ExampleMail;
+use App\Mail\StudentInfoMail;
+use App\Mail\StudentPrintInfoMail;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class StudentController extends Controller
 {
     public  function student(Request $request)
-    {
+    { 
         return  QueryBuilder::for(Student::class)
               ->allowedIncludes(['scores',])
             ->with('department')
@@ -42,7 +46,6 @@ class StudentController extends Controller
                 'konkor_score',
                 'school_name',
                 'school_graduation_year',
-
                 'research_title',
                 'research_teacher',
                 'research_defendent_year',
