@@ -20,13 +20,17 @@ class Department extends Resource
     public static $search = [
         'name','code'
     ];
+    
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return array
-     */
+    public static function singularLabel()
+    {
+        return __('Department');
+    }
+    public static function label()
+    {
+        return __('Department');
+    }
+
     public function fields(NovaRequest $request)
     {
         return [
