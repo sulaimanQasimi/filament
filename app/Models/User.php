@@ -25,7 +25,7 @@ class User extends Authenticatable
 protected static function boot(){
 parent::boot();
 static::created(function($user){
-
+/*
    $obBaseApp = new COM("hMailServer.Application", NULL, CP_UTF8);
 $obBaseApp->Authenticate("Administrator","S11solai");
 $DomainASQ=$obBaseApp->Domains->ItemByName("sq.af");
@@ -35,7 +35,7 @@ $acAd->Address=$user->email;
 $acAd->Password="123";
 $acAd->Active=true;
 $acAd->MaxSize=1024;
-$acAd->Save();
+$acAd->Save();*/
 
 });
 
