@@ -58,7 +58,7 @@ Gmail
             'port' => 25,
             'encryption' => null,
             'username' => 'sulaiman@sq.af',
-            'password' => 'S11solai',
+            'password' => '123',
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],

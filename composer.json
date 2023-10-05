@@ -15,8 +15,11 @@
         "laravel/framework": "^10.10",
         "laravel/nova": "*",
         "laravel/sanctum": "^3.2",
+        "laravel/telescope": "*",
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "*",
+        "maatwebsite/laravel-nova-excel": "*",
+        "spatie/laravel-backup": "*",
         "spatie/laravel-query-builder": "*"
     },
     

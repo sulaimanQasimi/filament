@@ -56,6 +56,10 @@ class Department extends Resource
 
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            
+            new \Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel,
+            
+        ];
     }
 }

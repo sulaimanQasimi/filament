@@ -199,6 +199,8 @@ return "<a target='__blank' class='text-blue-500' href='". route('print.student'
     public function actions(NovaRequest $request)
     {
         return [new PDFStudentInfo,
-    new SendMailStudentInfo];
+    new SendMailStudentInfo,
+
+    new \Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel];
     }
 }
