@@ -12,9 +12,6 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-use TCPDF_FONTS;
-use PDF;
-
 use App\Models\Student;
 
 class StudentInfoMail extends Mailable
@@ -49,9 +46,9 @@ class StudentInfoMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(StudentInfoASPDF::generate($this->student))
+        /*    Attachment::fromPath(StudentInfoASPDF::generate($this->student))
             ->as('info.pdf')
-            ->withMime('application/pdf')
+            ->withMime('application/pdf')*/
         ];
     }
 }

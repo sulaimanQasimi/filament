@@ -52,9 +52,9 @@ class StudentPrintInfoMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(StudentInfoASPDF::generate($this->student))
+        /*    Attachment::fromPath(StudentInfoASPDF::generate($this->student))
             ->as('info.pdf')
-            ->withMime('application/pdf')
+            ->withMime('application/pdf')*/
         ];
     }
 }

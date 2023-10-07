@@ -58,8 +58,8 @@ class Department extends Resource
     {
         return [
             
-            new \Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel,
-            
+            new \Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel(),
+
         ];
     }
 }

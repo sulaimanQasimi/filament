@@ -170,8 +170,6 @@ return [
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
-
-        Elibyy\TCPDF\ServiceProvider::class,
     ])->toArray(),
 
     /*

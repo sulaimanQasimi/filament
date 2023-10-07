@@ -6,14 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Notifications\NovaNotification;
-use TCPDF_FONTS;
-use  PDF;
 
 class PDFStudentInfo extends Action
 {
@@ -26,11 +21,12 @@ class PDFStudentInfo extends Action
      * @param  \Illuminate\Support\Collection  $models
      * @return mixed
      */
-    public function title() {
-return __("PDF Info");
+    public function title()
+    {
+        return __("PDF Info");
     }
     public function handle(ActionFields $fields, Collection $models)
-    {
+    {/*
             TCPDF_FONTS::addTTFfont(resource_path('font/arial.ttf'));
             PDF::SetTitle('Hello World');
         foreach($models as $model){
@@ -52,6 +48,7 @@ return __("PDF Info");
         ->type('info')
        );
        return Action::download(url:asset($file),name:'info.pdf');
+    */
     }
 
     /**
@@ -63,7 +60,7 @@ return __("PDF Info");
     public function fields(NovaRequest $request)
     {
         return [
-      //      Text::make(__('Name'),'name')->required()
+            //      Text::make(__('Name'),'name')->required()
         ];
     }
 }

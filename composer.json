@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "elibyy/tcpdf-laravel": "*",
         "guzzlehttp/guzzle": "^7.2",
         "jeffbeltran/sanctum-tokens": "*",
         "laravel/framework": "^10.10",
